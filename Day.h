@@ -8,17 +8,23 @@ class Day {
   string name;
   //number will be which day of the week is, for example: Monday = day 1
   int number;
+  //Hour hours[24];
+  bool occupied;
   public:
   Day();
   string getName();
   void setName(string);
   int getNumber();
   void setNumber(int);
+  bool getOccupied();
+  void setOccupied(bool);
+
 };
 
 Day:: Day(){
-
+  occupied = false;
 }
+
 string Day::getName(){
   return name;
 }
@@ -33,4 +39,12 @@ int Day::getNumber(){
 
 void Day::setNumber(int number){
   number = number;
+}
+
+bool Day:: getOccupied(){
+  return occupied;
+}
+
+void Day:: setOccupied(bool oc){
+  occupied = oc;
 }
