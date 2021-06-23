@@ -22,6 +22,7 @@ class Day {
   void setHourOccupied(int, string);
   void setHourAvailable(int);
   void printHoursOccupied();
+  void exportHoursOccupied(ofstream&);
 
 };
 
@@ -89,7 +90,7 @@ void Day:: setHourOccupied(int hour, string description){
     hours[hour-1].setOccupied(true);
     hours[hour-1].setDescription(description);
     setNumAct(1);
-    cout<<"The activity was succesfuly registered!"<<endl;
+    cout<<"The activity was successfully registered!"<<endl;
   }
   else
     cout<<"This hour is already occupied"<<endl;
@@ -104,7 +105,7 @@ void Day:: setHourAvailable(int hour){
     //If the day doesn't have any activities, it will change it's state to not occupied
     if (getNumAct() == 0)
       setDayOccupied(false);
-    cout<<"The activity is succesfuly deleted!"<<endl;
+    cout<<"The activity is successfully deleted!"<<endl;
   }
   else
     cout<<"This hour is already available"<<endl;
@@ -118,4 +119,15 @@ void Day :: printHoursOccupied(){
       cout<<"   - At "<<hours[i].getNumber()<<":"<<"00 you have: "<<hours[i].getDescription()<<endl;
   }
   cout<<endl;
+}
+
+//This method exports to a file only the Hours that are occupied by an activity
+void Day :: exportHoursOccupied(ofstream& file){
+
+  file<<"You have activties on "<<getName()<<":"<<endl;
+  for (int i = 0; i < 24; i++) {
+    if (hours[i].getOccupied() == true)
+      file<<"   - At "<<hours[i].getNumber()<<":"<<"00 you have: "<<hours[i].getDescription()<<endl;
+  }
+  file<<endl;
 }

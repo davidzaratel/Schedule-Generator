@@ -3,6 +3,7 @@
 //Last Modified: 23/06/21
 
 #include <iostream>
+#include <fstream>
 #include "Week.h"
 using namespace std;
 
@@ -48,15 +49,22 @@ void deleteAct(Week &wk){
   cout<<endl;
 }
 
-void exportSched(){
-
+void exportSched(Week &wk){
+  //Create the ofstream variable
+  ofstream exportfile;
+  //Open the file where the Schedule will be exported
+  exportfile.open("exportedSchedule.txt");
+  //Call the method that exports the info to the file
+  wk.exportSchedule(exportfile);
+  exportfile.close();
+  cout<<"Your Schedule was exported successfully!"<<endl<<endl;
 }
 
 
 //Function that prints the generated schedule, so the user can see all of his/her activies
 void printSchedule(Week &wk){
   //Calls getDaysOcuppied method
-  wk.getDaysOcuppied();
+  wk.printSchedule();
 }
 
 
@@ -81,13 +89,15 @@ int main(){
       registerAct(wk);
     if(in == 2)
       deleteAct(wk);
-
     if(in == 3)
       printSchedule(wk);
     if(in == 4)
-      exportSched();
-    if (in == 5)
+      exportSched(wk);
+    if (in == 5){
       n = 5;
+      cout<<"Have a wonderful week!"<<endl<<endl;
+    }
+
   //
   }
 

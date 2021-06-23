@@ -11,8 +11,9 @@ class Week{
     Week();
     void getDaysWeek();
     void registerDay(string,int,string);
-    void getDaysOcuppied();
+    void printSchedule();
     void deleteAct(string,int);
+    void exportSchedule(ofstream&);
 };
 
 //Constructor of the class Week. Initializes the object setting the days of the week and their correspondent number.
@@ -58,10 +59,17 @@ void Week:: registerDay(string day, int hour, string description){
 }
 
 //Method getDaysOcuppied, which calls the printHoursOccupied function to print all the days occupied
-void Week:: getDaysOcuppied(){
+void Week:: printSchedule(){
   for (int i = 0; i < 7; i++) {
     if (days[i].getDayOccupied() == true)
       days[i].printHoursOccupied();
+  }
+}
+
+void Week:: exportSchedule(ofstream& file){
+  for (int i = 0; i < 7; i++) {
+    if (days[i].getDayOccupied() == true)
+      days[i].exportHoursOccupied(file);
   }
 }
 
