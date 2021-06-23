@@ -5,7 +5,7 @@ using namespace std;
 
 class Week{
   private:
-    //The class Week only has as atributes an array of the days of the week
+    //The class Week only has one atribute, which is an array of the days of the week
     Day days[7];
   public:
     Week();
@@ -66,6 +66,7 @@ void Week:: printSchedule(){
   }
 }
 
+//This method goes through all the days of the week and checks which ones are occupied i,e the ones that have one or more activities
 void Week:: exportSchedule(ofstream& file){
   for (int i = 0; i < 7; i++) {
     if (days[i].getDayOccupied() == true)
@@ -73,6 +74,7 @@ void Week:: exportSchedule(ofstream& file){
   }
 }
 
+//Method delectAct, that goes through the array days to identify the day in which the user wants to delete the activity
 void Week:: deleteAct(string day, int hour){
   bool occupied = true;
   for(int i = 0 ; i < 7; i++){

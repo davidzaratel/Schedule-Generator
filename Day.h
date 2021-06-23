@@ -7,9 +7,11 @@ class Day {
   private:
   //string name will be the name of the Day, for example: Monday
   string name;
-  //number will be which day of the week is, for example: Monday = day 1
+  //The next atribute is an array of the 24 hours a day has
   Hour hours[24];
+  //The occupied atribute helps to identify if a day is occupied or not
   bool occupied;
+  //numact stores the total number of activities a day has
   int numact;
   public:
   Day();
@@ -65,7 +67,7 @@ void Day::setName(string name1){
   name = name1;
 }
 
-//Is the number necesarry?
+
 int Day::getNumAct(){
   return numact;
 }
@@ -96,6 +98,7 @@ void Day:: setHourOccupied(int hour, string description){
     cout<<"This hour is already occupied"<<endl;
 }
 
+//This method changes the state of the Hour the user wants for it to be available and delete the activity
 void Day:: setHourAvailable(int hour){
   cout<<endl;
   //If the hour is occupied then it can be deleted
@@ -123,7 +126,6 @@ void Day :: printHoursOccupied(){
 
 //This method exports to a file only the Hours that are occupied by an activity
 void Day :: exportHoursOccupied(ofstream& file){
-
   file<<"You have activties on "<<getName()<<":"<<endl;
   for (int i = 0; i < 24; i++) {
     if (hours[i].getOccupied() == true)
